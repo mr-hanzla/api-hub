@@ -27,14 +27,15 @@ def create_app(test_config=None):
     def hello():
         return '<h1>Hello, Brother from another mother, Here we go again</h1>'
 
-    from . import db
+    from . import db, auth, blog, tax_info
+
     db.init_app(app)
 
-    from . import auth
     app.register_blueprint(auth.bp)
 
-    from . import blog
     app.register_blueprint(blog.bp)
-    app.add_url_rule('/', endpoint='index')
+    app.add_url_rule('/', endpoint='blog.index')
+
+    app.register_blueprint(tax_info.bp)
 
     return app
