@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Tax Info{% endblock title %}</h1>
+{% endblock header %}
+
+{% block content %}
+<label for="monthly-income-input">Enter Monthly Income: </label>
+<input type="number" id="monthly-income-input" onkeyup="addValueToSpan()" /><br>
+
+<div>
+    <h3>Monthly Income: <span id="monthly-income">$</span></h3>
+    <h3>Monthly Income: <span id="monthly-income-tax">$</span></h3>
+</div>
+<button onclick="calculateTax()">Calculate Tax</button>
+{% endblock content %}
+
+{% block scripts %}
+<script type=text/javascript>
+    function addValueToSpan() {
+        let monthlyIncomeInputTag = document.getElementById("monthly-income-input");
+        let monthlyIncomeTag = document.getElementById("monthly-income");
+
+        let num = Number(monthlyIncomeInputTag.value);
+
+        monthlyIncomeTag.innerText = "Rs. " + num.toLocaleString('hi-IN');
+
+        if (monthlyIncomeTag.innerText == "Rs. 0") {
+            monthlyIncomeTag.innerText = "$";
+        }
+    }
+    
+    function calculateTax() {
+        console.log('Working Bruh, button input is working');
+    }
+</script>
+{% endblock scripts %}
