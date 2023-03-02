@@ -14,24 +14,3 @@
 </div>
 <button onclick="calculateTax()">Calculate Tax</button>
 {% endblock content %}
-
-{% block scripts %}
-<script type=text/javascript>
-    function addValueToSpan() {
-        let monthlyIncomeInputTag = document.getElementById("monthly-income-input");
-        let monthlyIncomeTag = document.getElementById("monthly-income");
-
-        let num = Number(monthlyIncomeInputTag.value);
-
-        monthlyIncomeTag.innerText = "Rs. " + num.toLocaleString('hi-IN');
-
-        if (monthlyIncomeTag.innerText == "Rs. 0") {
-            monthlyIncomeTag.innerText = "$";
-        }
-    }
-    
-    function calculateTax() {
-        console.log('Working Bruh, button input is working');
-    }
-</script>
-{% endblock scripts %}
