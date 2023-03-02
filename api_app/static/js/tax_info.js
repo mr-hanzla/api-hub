@@ -1,14 +1,16 @@
 function addValueToSpan() {
-    let monthlyIncomeInputTag = document.getElementById("monthly-income-input");
-    let monthlyIncomeTag = document.getElementById("monthly-income");
-
-    let monthlyIncome = Number(monthlyIncomeInputTag.value);
+    let monthlyIncome = Number(document.getElementById("monthly-income-input").value);
     let yearlyIncome = monthlyIncome * 12;
 
-    monthlyIncomeTag.innerText = "Rs. " + monthlyIncome.toLocaleString('hi-IN');
+    addIncomeValueToTag(document.getElementById("monthly-income"), monthlyIncome);
+    addIncomeValueToTag(document.getElementById("yearly-income"), yearlyIncome);
+}
 
-    if (monthlyIncomeTag.innerText == "Rs. 0") {
-        monthlyIncomeTag.innerText = "$";
+function addIncomeValueToTag(_tag, _income) {
+    _tag.innerText = "Rs. " + _income.toLocaleString('hi-IN');
+
+    if (_tag.innerText == "Rs. 0") {
+        _tag.innerText = "$";
     }
 }
 
