@@ -6,11 +6,11 @@
 
 {% block content %}
 <label for="monthly-income-input">Enter Monthly Income: </label>
-<input type="number" id="monthly-income-input" onkeyup="addValueToSpan()" /><br>
+<input type="number" id="monthly-income-input" /><br>
 
 <div>
     <h3>Monthly Income: <span id="monthly-income">$</span></h3>
     <h3>Yearly Income: <span id="yearly-income">$</span></h3>
 </div>
-<button onclick="calculateTax()">CLEAR</button>
+<button id="clear-btn" >CLEAR</button>
 {% endblock content %}
