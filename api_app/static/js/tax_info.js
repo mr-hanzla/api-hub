@@ -1,5 +1,11 @@
+let monthlyIncomeInputTag = document.getElementById("monthly-income-input");
+monthlyIncomeInputTag.addEventListener("keyup", addValueToSpan);
+
+document.getElementById("clear-btn").addEventListener("click", clearInputValue);
+
+
 function addValueToSpan() {
-    let monthlyIncome = Number(document.getElementById("monthly-income-input").value);
+    let monthlyIncome = Number(monthlyIncomeInputTag.value);
     let yearlyIncome = monthlyIncome * 12;
 
     addIncomeValueToTag(document.getElementById("monthly-income"), monthlyIncome);
@@ -14,6 +20,8 @@ function addIncomeValueToTag(_tag, _income) {
     }
 }
 
-function calculateTax() {
-    console.log('Working Bruh, button input is working');
+function clearInputValue() {
+    monthlyIncomeInputTag.value = "";
+    addIncomeValueToTag(document.getElementById("monthly-income"), 0);
+    addIncomeValueToTag(document.getElementById("yearly-income"), 0);
 }
