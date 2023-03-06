@@ -17,8 +17,8 @@ function addValueToSpan() {
     addIncomeValueToTag(document.getElementById("yearly-tax"), taxValues.taxPercentage);
 }
 
-function addIncomeValueToTag(_tag, _income) {
-    _tag.innerText = "Rs. " + _income.toLocaleString('hi-IN');
+function addIncomeValueToTag(_tag, _income, _symbol = "$") {
+    _tag.innerText = _income.toLocaleString('hi-IN');
 
     if (_tag.innerText == "0") {
         _tag.innerText = "__";
