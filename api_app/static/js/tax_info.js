@@ -15,8 +15,8 @@ function addValueToSpan() {
 function addIncomeValueToTag(_tag, _income) {
     _tag.innerText = "Rs. " + _income.toLocaleString('hi-IN');
 
-    if (_tag.innerText == "Rs. 0") {
-        _tag.innerText = "$";
+    if (_tag.innerText == "0") {
+        _tag.innerText = "__";
     }
 }
 
