@@ -8,8 +8,13 @@ function addValueToSpan() {
     let monthlyIncome = Number(monthlyIncomeInputTag.value);
     let yearlyIncome = monthlyIncome * 12;
 
+    let taxValues = returnTaxValues(yearlyIncome)
+
     addIncomeValueToTag(document.getElementById("monthly-income"), monthlyIncome);
+    addIncomeValueToTag(document.getElementById("monthly-taxable-amount"), taxValues.taxableIncome / 12);
     addIncomeValueToTag(document.getElementById("yearly-income"), yearlyIncome);
+    addIncomeValueToTag(document.getElementById("yearly-taxable-amount"), taxValues.taxableIncome);
+    addIncomeValueToTag(document.getElementById("yearly-tax"), taxValues.taxPercentage);
 }
 
 function addIncomeValueToTag(_tag, _income) {
