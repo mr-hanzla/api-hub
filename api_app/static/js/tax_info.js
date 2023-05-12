@@ -1,7 +1,7 @@
 let monthlyIncomeInputTag = document.getElementById("monthly-income-input");
 monthlyIncomeInputTag.focus();
 
-monthlyIncomeInputTag.addEventListener("keyup", addValueToSpan);
+monthlyIncomeInputTag.addEventListener("change", addValueToSpan);
 
 document.getElementById("clear-btn").addEventListener("click", clearInputValue);
 
@@ -66,6 +66,13 @@ function returnTaxValues(yearlyIncome) {
 
 function clearInputValue() {
     monthlyIncomeInputTag.value = "";
+    addIncomeValueToTag(document.getElementById("tax-percentage"), 0);
     addIncomeValueToTag(document.getElementById("monthly-income"), 0);
+    addIncomeValueToTag(document.getElementById("monthly-tax"), 0);
+    addIncomeValueToTag(document.getElementById("monthly-income-after-tax"), 0);
+    addIncomeValueToTag(document.getElementById("monthly-taxable-amount"), 0);
     addIncomeValueToTag(document.getElementById("yearly-income"), 0);
+    addIncomeValueToTag(document.getElementById("yearly-taxable-amount"), 0);
+    addIncomeValueToTag(document.getElementById("additional-tax-amount"), 0);
+    addIncomeValueToTag(document.getElementById("yearly-income-after-tax"), 0);
 }
