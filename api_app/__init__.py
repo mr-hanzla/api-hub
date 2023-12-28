@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, render_template
 
 
 def create_app(test_config=None):
@@ -26,6 +26,14 @@ def create_app(test_config=None):
     @app.route('/routes')
     def hello():
         return '<h1>Chillax, <br> routes coming soon <br>tey tussi ravo stay tuned</h1>'
+    
+    @app.route('/tic-tac-toe')
+    def tic_tac_toe():
+        return render_template('tic-tac-toe/tic-tac-toe.html')
+    
+    # @app.route('/resume')
+    # def tic_tac_toe():
+    #     return render_template('resume/tic-tac-toe.html')
 
     from . import db, auth, blog, tax_info, resume
 
