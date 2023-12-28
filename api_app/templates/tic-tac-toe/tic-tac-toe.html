@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %} Tic-Tac-Toe {% endblock title %}
+
+{% block content %}
+<h1><span class="badge bg-success">Tic Tac Toe</span></h1>
+
+<button type="button" id="player" onclick="changePlayer()" class="btn btn-primary">X</button><br>
+<button type="button" id="input-button" onclick="changeButtonText()" class="btn btn-dark">Enter: row, col:</button>
+<input  id="input-text" placeholder="Enter row-col value" type="text"/>
+
+<table class="table table-bordered border-primary">
+    {% for i in range(3) %}
+        <tr style="text-align: center;">
+        {% for j in range(3) %}
+            <td id="cell-{{ i }}-{{ j }}">-</td>
+        {% endfor %}
+    {% endfor %}
+</table>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    // adding "Enter" key event listener...
+    let inputText = document.querySelector("#input-text");
+    inputText.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+
+            let inputValue = inputText.value.split(" ");
+            let row = inputValue[0];
+            let col = inputValue[1];
+            updateCellText(row, col);
+
+            changePlayer();
+            changeButtonText(inputText.value);
+            inputText.value = "";
+        }
+    });
+
+    function updateCellText(row, col) {
+        let cell = document.querySelector(`#cell-${row}-${col}`);
+        cell.innerText = getPlayer();
+    }
+
+    function getPlayer() {
+        return document.querySelector("#player").innerText;
+    }
+
+    function changePlayer() {
+        let playerButton = document.querySelector("#player");
+        if (playerButton.innerText == "X") {
+            playerButton.innerText = "O";
+        } else {
+            playerButton.innerText = "X";
+        }
+    }
+
+    function changeButtonText(btnText="Hello123") {
+        let infoButton = document.querySelector("#input-button");
+        infoButton.innerText = btnText;
+    }
+</script>
+{% endblock scripts %}
