@@ -24,10 +24,9 @@
         let cell = document.querySelector(`#${id}`);
         if (cell.innerText == '-') {
             cell.innerText = getPlayer();
-            if (checkRowForWin(id)) {
-                // write row winning logic
-            } if (checkColForWin(getColNumberFromId(id))) {
-
+            if (checkRowForWin(id) || checkColForWin((id))) {
+                alert(`Player "${getPlayer()}" has won!`);
+                return
             }
             changePlayer();
         } else
