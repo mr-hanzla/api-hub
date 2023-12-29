@@ -6,14 +6,13 @@
 <h1><span class="badge bg-success">Tic Tac Toe</span></h1>
 
 <button type="button" id="player" onclick="changePlayer()" class="btn btn-primary">X</button><br>
-<button type="button" id="input-button" onclick="changeButtonText()" class="btn btn-dark">Enter: row, col:</button>
-<input  id="input-text" placeholder="Enter row-col value" type="text"/>
+<button type="button" id="input-button" onclick="clearBoard()" class="btn btn-dark">Clear Board</button>
 
 <table class="table table-bordered border-primary">
     {% for i in range(3) %}
         <tr style="text-align: center;">
         {% for j in range(3) %}
-            <td id="cell-{{ i }}-{{ j }}">-</td>
+            <td id="cell-{{ i }}-{{ j }}" onclick="updateCellText(this.id)">-</td>
         {% endfor %}
     {% endfor %}
 </table>
@@ -21,26 +20,9 @@
 
 {% block scripts %}
 <script>
-    // adding "Enter" key event listener...
-    let inputText = document.querySelector("#input-text");
-    inputText.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-
-            let inputValue = inputText.value.split(" ");
-            let row = inputValue[0];
-            let col = inputValue[1];
-            updateCellText(row, col);
-
-            changePlayer();
-            changeButtonText(inputText.value);
-            inputText.value = "";
-        }
-    });
-
-    function updateCellText(row, col) {
-        let cell = document.querySelector(`#cell-${row}-${col}`);
-        cell.innerText = getPlayer();
+    function updateCellText(id) {
+        document.querySelector(`#${id}`).innerText = getPlayer();
+        changePlayer();
     }
 
     function getPlayer() {
@@ -56,9 +38,12 @@
         }
     }
 
-    function changeButtonText(btnText="Hello123") {
-        let infoButton = document.querySelector("#input-button");
-        infoButton.innerText = btnText;
+    function clearBoard() {
+        for (i=0; i<3; i++) {
+            for (j=0; j<3; j++) {
+                document.querySelector(`#cell-${i}-${j}`).innerText = '-';
+            }
+        }
     }
 </script>
 {% endblock scripts %}
