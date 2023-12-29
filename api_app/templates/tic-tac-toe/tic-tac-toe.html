@@ -21,8 +21,55 @@
 {% block scripts %}
 <script>
     function updateCellText(id) {
-        document.querySelector(`#${id}`).innerText = getPlayer();
-        changePlayer();
+        let cell = document.querySelector(`#${id}`);
+        if (cell.innerText == '-') {
+            cell.innerText = getPlayer();
+            if (checkRowForWin(id)) {
+                // write row winning logic
+            } if (checkColForWin(getColNumberFromId(id))) {
+
+            }
+            changePlayer();
+        } else
+            console.log('Already filled!')
+    }
+
+    function getRowNumberFromId(id) {
+        return parseInt(id.split('-')[1]);
+    }
+
+    function getColNumberFromId(id) {
+        return parseInt(id.split('-')[2]);
+    }
+
+    function checkColForWin(id) {
+        let colNumber = getColNumberFromId(id);
+        const tempColValues = new Set();
+
+        for (i = 0; i < 3; i++) {
+            tempColValues.add(document.querySelector(`#cell-${i}-${colNumber}`))
+        }
+
+        if (tempColValues.size > 1)
+            return false;
+        if (tempColValues.has(getPlayer()))
+            return true
+        return false
+    }
+
+    function checkRowForWin(id) {
+        console.log(id)
+        let rowNumber = getRowNumberFromId(id)
+        const tempRowValues = new Set();
+        for (i=0; i < 3; i++) {
+            tempRowValues.add(document.querySelector(`#cell-${rowNumber}-${i}`).innerText);
+        }
+        console.log(tempRowValues);
+        if (tempRowValues.size > 1)
+            return false;
+        if (tempRowValues.has(getPlayer()))
+            return true;
+        return false;
     }
 
     function getPlayer() {
