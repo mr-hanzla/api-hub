@@ -47,7 +47,7 @@
         const tempColValues = new Set();
 
         for (i = 0; i < 3; i++) {
-            tempColValues.add(document.querySelector(`#cell-${i}-${colNumber}`))
+            tempColValues.add(document.querySelector(`#cell-${i}-${colNumber}`).innerText)
         }
 
         if (tempColValues.size > 1)
@@ -58,13 +58,11 @@
     }
 
     function checkRowForWin(id) {
-        console.log(id)
         let rowNumber = getRowNumberFromId(id)
         const tempRowValues = new Set();
         for (i=0; i < 3; i++) {
             tempRowValues.add(document.querySelector(`#cell-${rowNumber}-${i}`).innerText);
         }
-        console.log(tempRowValues);
         if (tempRowValues.size > 1)
             return false;
         if (tempRowValues.has(getPlayer()))
